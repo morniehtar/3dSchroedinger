@@ -17,7 +17,6 @@ program calculateStationary
 ! Searching stationary levels
     allocate(stErg(0))
     estep = (einf-enou)/edots
-    cndPtr => cndWron
     do i = 1, edots
         ebt = -einf + (i-1)*estep
         etp = -einf + i*estep

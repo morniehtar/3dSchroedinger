@@ -9,19 +9,20 @@ module equation
     end interface
 
 ! Energy effective zero
-    real(8), parameter :: enou = 4d-3 ! >0
+    real(8), parameter :: enou = 0.125d0 ! >0
 ! Energy effective infinity
-    real(8), parameter :: einf = 150d0 ! >0
+    real(8), parameter :: einf = 800d0 ! >0
 ! Energy search precision
-    integer, parameter :: edots = 6000
+    integer, parameter :: edots = 3000
 
 ! WF effective zero
     real(8), parameter :: xnou = 7d-10
 ! WF effective infinity
-    real(8), parameter :: xinf = 2.5d0
-! Cross-linking point (for solution-finding algorythm)
+    real(8), parameter :: xinf = 7d0
+! Cross-linking point (for solution-finding algorithm)
     real(8), parameter :: xcrs = 0.108d0
     ! 0.338d0 for g=2d0; 0.108d0 perfect for l=0
+    ! if deeper energy levels get lost or distorted, move xcrs closer to zero
 
 ! Left boundary WF
     real(8), parameter :: yleft = 0d0

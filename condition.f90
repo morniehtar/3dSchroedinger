@@ -14,9 +14,9 @@ module condition
     procedure(cnd), pointer :: cndPtr => cndLog
 
 ! Solution search prescision (affects stationary levels)
-    integer, parameter :: cdots = 2000
+    integer, parameter :: cdots = 10000 !10000 works smooth, but slow
 
-    public :: cndWron, cndLog, getCND, cndPtr
+    public :: getCND, cndPtr
 contains
 
     real(8) function cndWron(nrg)
@@ -39,7 +39,7 @@ contains
         yl = yleft
         zl = zleft
         stp = (xcrs - xnou) / cdots
-        do i = 0, cdots-1
+        do i = 0, cdots
             x = xnou + i*stp
             call integL(fptr, gptr, nrg, x, stp, yl, zl, ystore, zstore)
             yl = ystore
@@ -49,7 +49,7 @@ contains
         yr = yright(nrg)
         zr = zright(nrg)
         stp = (xinf - xcrs) / cdots
-        do i = 0, cdots-1
+        do i = 0, cdots
             x = xinf - i*stp
             call integR(fptr, gptr, nrg, x, stp, yr, zr, ystore, zstore)
             yr = ystore
@@ -80,7 +80,7 @@ contains
         yl = yleft
         zl = zleft
         stp = (xcrs - xnou) / cdots
-        do i = 0, cdots-1
+        do i = 0, cdots
             x = xnou + i*stp
             call integL(fptr, gptr, nrg, x, stp, yl, zl, ystore, zstore)
             yl = ystore
@@ -90,7 +90,7 @@ contains
         yr = yright(nrg)
         zr = zright(nrg)
         stp = (xinf - xcrs) / cdots
-        do i = 0, cdots-1
+        do i = 0, cdots
             x = xinf - i*stp
             call integR(fptr, gptr, nrg, x, stp, yr, zr, ystore, zstore)
             yr = ystore
